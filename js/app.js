@@ -18,6 +18,13 @@ function loadNames(e) {
     if(origin !== ''){
         url += `nat=${origin}&`;
     }
-    
-     console.log(url);
+     //Read the genre and append to the url
+     if(genre !== ''){
+        url += `gender=${genre}&`;
+    }
+    //Read the amount and append to the url
+    if(amount !== ''){
+        url += `results=${amount}`;
+    }
+    console.log(url);
 }  
