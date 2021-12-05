@@ -27,20 +27,25 @@ function loadNames(e) {
         url += `results=${amount}`;
     }
     
-    // Ajax Call
-    const xhr = new XMLHttpRequest();
+   //Get API
+   fetch(url)
+   .then(res => res.json())
+   .then(data => {
+        // console.log(data);
 
-    // Open the connection
-    xhr.open('GET', url, true);
+        let names = data.results;
+        
+        // Insert into the HTML
+        let html = "<h2><center>Generated Names</center></h2>"
+        html += '<ul class="list">';
+        names.forEach(function(name) {
+            html += `
+                <li>${name.name.first}</li>
+            `;     
+        })
+        html += '</ul>';
 
-    // Execute the function
-    xhr.onload = function(){
-        if(this.status === 200){
-            const names = JSON.parse( this.responseText );
-            console.log(names);
-        }
-    }
-
-    //Send the request
-    xhr.send();
+        document.querySelector('#result').innerHTML = html;
+   });
+           
 }  
